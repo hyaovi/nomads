@@ -1,0 +1,31 @@
+{
+  "name": "connector",
+  "version": "1.0.0",
+  "description": "Social network ",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js"
+  },
+  "keywords": [
+    "MERN",
+    "mongo",
+    "express",
+    "react",
+    "nodeJS"
+  ],
+  "author": "Houngue Yaovi",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.7",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
