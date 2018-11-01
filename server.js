@@ -1,9 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const bodyParser = require("body-parser");
 const app = express();
+
+//body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//connection to db with mongoose
 const dbURI = require("./config/keys").mongodbURI;
 
+//settings routes
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
 const profile = require("./routes/api/profile");
@@ -14,7 +21,7 @@ mongoose.connect(
   (err, db) => {
     if (err) {
       console.log(`WE GOT ISSUES: ${err} `);
-    } else console.log("we passed!");
+    } else console.log("db connected!");
   }
 );
 
