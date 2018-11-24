@@ -5,6 +5,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
 
 //@route  GET api/users/tests
 // @description tests users routes
@@ -79,7 +80,7 @@ router.post("/login", (req, res) => {
                 if (err) {
                   console.log(err);
                 }
-                res.json({ message: "success", bearer: `Bearer  ${token}` });
+                res.json({ message: "success", bearer: `Bearer ${token}` });
               }
             );
           } else {
@@ -90,4 +91,17 @@ router.post("/login", (req, res) => {
     }
   });
 });
+
+//@route  GET api/users/current
+// @description return user page after authentication
+// @acesss Private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { id, name, email, avatar } = req.user;
+    res.json({ id, name, email, avatar });
+  }
+);
+
 module.exports = router;

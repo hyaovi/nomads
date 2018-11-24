@@ -1,11 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 const app = express();
 
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//passport middleware
+app.use(passport.initialize());
+
+//passport configuration
+require("./config/passport")(passport);
 
 //connection to db with mongoose
 const dbURI = require("./config/keys").mongodbURI;
