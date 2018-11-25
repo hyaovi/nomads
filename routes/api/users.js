@@ -6,6 +6,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const validateRegisterInput = require("../../validator/register");
+const validateLoginInput = require("../../validator/login");
 
 //@route  GET api/users/tests
 // @description tests users routes
@@ -18,6 +20,11 @@ router.get("/test", (req, res) => {
 // @description handle registrations
 // @acesss Public
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const email = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
@@ -28,7 +35,8 @@ router.post("/register", (req, res) => {
   });
   User.findOne({ email }).then(user => {
     if (user) {
-      return res.status(400).json({ message: "Email already exists" });
+      errors.email = "Email already exists";
+      return res.status(400).json(errors);
     } else {
       const newUser = new User({
         name,
@@ -53,6 +61,11 @@ router.post("/register", (req, res) => {
 // @description checks the user credentials and return a token
 // @acesss Public
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email }, (err, user) => {
@@ -60,7 +73,8 @@ router.post("/login", (req, res) => {
       res.json({ message: err });
     }
     if (!user) {
-      res.status(404).json({ email: "user not found" });
+      errors.email = "user not found";
+      res.status(404).json(errors);
     } else {
       bcrypt
         .compare(password, user.password)
@@ -84,7 +98,8 @@ router.post("/login", (req, res) => {
               }
             );
           } else {
-            res.json({ message: "password incorrect" });
+            errors.password = "Password incorrect!";
+            res.json(errors);
           }
         })
         .catch(err => res.json({ message: err }));
