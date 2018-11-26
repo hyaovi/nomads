@@ -26,11 +26,11 @@ router.get(
       .then(profile => {
         if (!profile) {
           error.noprofile = "this user has no profile yet";
-          res.status(404).json(error);
+          return res.status(404).json(error);
         }
         res.json(profile);
       })
-      .catch(err => res.json(err));
+      .catch(err => res.status(404).json(err));
   }
 );
 
