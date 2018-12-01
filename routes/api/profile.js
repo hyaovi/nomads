@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+mongoose.set("useFindAndModify", false);
 const passport = require("passport");
 
 //load validations
@@ -44,10 +45,10 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("SKILLS!!!!" + req.body.skills);
-    const { errors, isValid } = validateProfileInput(req.body);
+    console.log("SKILLS!!!!" + req.body.youtube);
+    let { errors, isValid } = validateProfileInput(req.body);
     if (!isValid) {
-      res.status(400).json(errors);
+      return res.status(400).json(errors);
     }
     const profileFields = {};
     profileFields.user = req.user.id;
