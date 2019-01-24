@@ -57,7 +57,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-//@route  GET api/users/login
+//@route  POST api/users/login
 // @description checks the user credentials and return a token
 // @acesss Public
 router.post("/login", (req, res) => {

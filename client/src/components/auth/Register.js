@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
@@ -34,7 +35,7 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -43,11 +44,9 @@ class Register extends Component {
   }
   render() {
     const { name, email, password, password2, errors } = this.state;
-    const { user } = this.props.auth;
     return (
       <div className="register">
         <div className="container">
-          {user ? user.name : null}
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
@@ -143,4 +142,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
-)(Register);
+)(withRouter(Register));
