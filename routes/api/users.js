@@ -94,15 +94,15 @@ router.post("/login", (req, res) => {
                 if (err) {
                   console.log(err);
                 }
-                res.json({ message: "success", bearer: `Bearer ${token}` });
+                res.json({ sucess: "true", token: `Bearer ${token}` });
               }
             );
           } else {
             errors.password = "Password incorrect!";
-            res.json(errors);
+            res.status(400).json(errors);
           }
         })
-        .catch(err => res.json({ message: err }));
+        .catch(err => res.status(400).json({ message: err }));
     }
   });
 });

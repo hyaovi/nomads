@@ -16,12 +16,13 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.password)) {
     errors.password = "password is required!";
   }
-  if (
-    !Validator.isEmpty(data.password) &&
-    !Validator.isLength(data.password, { min: 6, max: 30 })
-  ) {
-    errors.password = "Password must be between 6 and 30 characters";
-  }
+  // this is bad ux
+  // if (
+  //   !Validator.isEmpty(data.password) &&
+  //   !Validator.isLength(data.password, { min: 6, max: 30 })
+  // ) {
+  //   errors.password = "Password must be between 6 and 30 characters";
+  // }
 
   return {
     errors,
