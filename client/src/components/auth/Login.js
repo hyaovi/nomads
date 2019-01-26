@@ -32,7 +32,12 @@ class Login extends Component {
     };
     this.props.loginUser(newUser, this.props.history);
   }
-
+  componentDidMount() {
+    //hide auth pages and redirect to dashboard if user is logged in
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
   componentWillReceiveProps(nextprops) {
     //push or redirect to dashboard when logged in
     if (nextprops.auth.isAuthenticated) {

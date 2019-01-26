@@ -98,7 +98,7 @@ router.post("/login", (req, res) => {
               }
             );
           } else {
-            errors.password = "Password incorrect!";
+            errors.password = "Password or username or both are incorrect!";
             res.status(400).json(errors);
           }
         })
