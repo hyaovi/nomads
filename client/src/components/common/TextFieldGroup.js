@@ -33,7 +33,7 @@ function TextFieldGroup({
     </div>
   );
 }
-TextFieldGroup.Proptypes = {
+TextFieldGroup.proptypes = {
   name: Proptypes.string.isRequired,
   value: Proptypes.string.isRequired,
   type: Proptypes.string.isRequired,

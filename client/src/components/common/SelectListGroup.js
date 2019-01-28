@@ -35,7 +35,7 @@ function SelectListGroup({
     </div>
   );
 }
-SelectListGroup.Proptypes = {
+SelectListGroup.proptypes = {
   name: Proptypes.string.isRequired,
   value: Proptypes.string.isRequired,
   onChange: Proptypes.func.isRequired,
