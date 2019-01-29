@@ -5,6 +5,7 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS
 } from "./types";
+import { SET_CURRENT_USER } from "../actions/types";
 
 //get current profile
 export const getCurrentProfile = () => dispatch => {
@@ -39,4 +40,19 @@ export const setProfileLoading = () => {
 // clear profile on logout
 export const clearCurrentProfile = () => {
   return { type: CLEAR_CURRENT_PROFILE };
+};
+
+//delete profile and user account
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure? This can't be undone!")) {
+    axios
+      .delete("api/profile")
+      .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
+      .catch(err =>
+        dispatch({
+          type: GET_PROFILE,
+          payload: {}
+        })
+      );
+  }
 };

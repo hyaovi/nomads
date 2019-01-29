@@ -17,12 +17,19 @@ class Navbar extends Component {
   }
   render() {
     const { isAuthenticated, user } = this.props.auth;
+
+    //links seen by logged users
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
           <a href="." onClick={this.onLougoutClick} className="nav-link">
             <img
-              style={{ width: "30px", marginRight: "5px" }}
+              style={{ width: "24px", marginRight: "5px" }}
               className="img-fluid rounded-circle"
               src={user.avatar}
               alt={user.name}
@@ -34,6 +41,7 @@ class Navbar extends Component {
       </ul>
     );
 
+    //links seen by guests
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
