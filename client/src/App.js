@@ -17,7 +17,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 
 import "./App.css";
-import { clearCurrentProfile } from "./actions/profileAction";
+import { clearCurrentProfile } from "./actions/profileActions";
 
 //wrapper for all private routes
 import PrivateRoute from "./components/common/PrivateRoute";

@@ -6,6 +6,7 @@ import {
   GET_ERRORS
 } from "./types";
 
+//get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -21,11 +22,11 @@ export const createProfile = (profileData, history) => dispatch => {
   axios
     .post("api/profile/", profileData)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       history.push("/dashboard");
     })
     .catch(err => {
-      console.log(err.response.data);
+      // console.log(err.response.data);
       dispatch({ type: GET_ERRORS, payload: err.response.data });
     });
 };

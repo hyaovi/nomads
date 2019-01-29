@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import InputGroup from "../common/InputGroup";
-import { createProfile } from "../../actions/profileAction";
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -31,11 +31,7 @@ class CreateProfile extends Component {
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
+
   onChangeHandler(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -63,6 +59,13 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
     this.props.createProfile(profileData, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    //binding errors from props to component state
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
   render() {
     const {
@@ -157,7 +160,7 @@ class CreateProfile extends Component {
               <small className="d-block pb-3 text-danger">
                 * = are required
               </small>
-              <form onSubmit={this.onSubmit}>
+              <form onSubmit={this.onSubmitHandler}>
                 <TextFieldGroup
                   placeholder="Handle"
                   type="text"
