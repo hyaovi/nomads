@@ -78,7 +78,7 @@ class CreateProfile extends Component {
       console.log(profile);
 
       //CONVERT SKILLS FROM ARRAY BAVK INTO CSV FORMAT
-      const skillsCSV = profile.skills.join(", ");
+      const skillsCSV = profile.skills.join(",");
       console.log(skillsCSV);
 
       //fill empty field from current fetched profile

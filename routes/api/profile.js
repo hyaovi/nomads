@@ -88,7 +88,7 @@ router.post(
   (req, res) => {
     let { errors, isValid } = validateExperienceInput(req.body);
     if (!isValid) {
-      res.json(errors);
+      return res.status(400).json(errors);
     }
     Profile.findOne({ user: req.user.id }).then(profile => {
       const newExperience = {
@@ -98,13 +98,14 @@ router.post(
         from: req.body.from,
         to: req.body.to,
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        current: req.body.current
       };
       profile.experience.unshift(newExperience);
       profile
         .save()
         .then(profile => res.json(profile))
-        .catch(err => res.json(err));
+        .catch(err => res.status(400).json(err));
     });
   }
 );
@@ -118,7 +119,7 @@ router.post(
   (req, res) => {
     let { errors, isValid } = validateEducationInput(req.body);
     if (!isValid) {
-      res.json(errors);
+      return res.status(400).json(errors);
     }
     Profile.findOne({ user: req.user.id }).then(profile => {
       const newEducation = {
@@ -134,7 +135,7 @@ router.post(
       profile
         .save()
         .then(profile => res.json(profile))
-        .catch(err => res.json(err));
+        .catch(err => res.status(400).json(err));
     });
   }
 );
