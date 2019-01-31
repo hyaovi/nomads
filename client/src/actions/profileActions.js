@@ -42,21 +42,6 @@ export const clearCurrentProfile = () => {
   return { type: CLEAR_CURRENT_PROFILE };
 };
 
-//delete profile and user account
-export const deleteAccount = () => dispatch => {
-  if (window.confirm("Are you sure? This can't be undone!")) {
-    axios
-      .delete("api/profile")
-      .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
-      .catch(err =>
-        dispatch({
-          type: GET_PROFILE,
-          payload: {}
-        })
-      );
-  }
-};
-
 // add experience
 export const addExperience = (expData, history) => dispatch => {
   axios
@@ -77,4 +62,55 @@ export const addEducation = (eduData, history) => dispatch => {
       console.log(err.response.data);
       dispatch({ type: GET_ERRORS, payload: err.response.data });
     });
+};
+
+//delete experience credential
+export const deleteExperience = id => dispatch => {
+  axios
+    .delete(`api/profile/experience/:${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//delete experience credential
+export const deleteEducation = id => dispatch => {
+  axios
+    .delete(`api/profile/education/:${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//delete profile and user account
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure? This can't be undone!")) {
+    axios
+      .delete("api/profile")
+      .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
+      .catch(err =>
+        dispatch({
+          type: GET_PROFILE,
+          payload: {}
+        })
+      );
+  }
 };

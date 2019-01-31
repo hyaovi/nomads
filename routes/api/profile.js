@@ -144,57 +144,70 @@ router.post(
 // @description update or create the user's experience fields
 // @acesss Private
 router.delete(
-  "/experience/:experience_id",
+  "/experience/:exp_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      //Get the experience index from db
-      const experience_index = profile.experience.findIndex(
-        item => item.id == req.params.experience_id
-      );
-      //Get remove index
-      if (experience_index > -1) {
-        profile.experience.splice(experience_index, 1);
-        profile
-          .save()
-          .then(profile => res.json(profile))
-          .catch(err => res.json(err));
-      } else {
-        return res.status(400).json({
-          experience:
-            "Some error has occured! Please tried this later with the correct informations"
-        });
-      }
-    });
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.experience
+          .map(item => item.id)
+          .indexOf(req.params.exp_id);
+
+        // Splice out of array
+        profile.experience.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
   }
 );
+//BUGGY ROUTE
+// router.delete(
+//   "/experience/:experience_id",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     Profile.findOne({ user: req.user.id })
+//       .then(profile => {
+//         //Get the experience index from db
+//         const experience_index = profile.experience.findIndex(
+//           item => item.id == req.params.experience_id
+//         );
+//         //Get remove index
+//         if (experience_index > -1) {
+//           profile.experience.splice(experience_index, 1);
+//           profile
+//             .save()
+//             .then(profile => res.json(profile))
+//             .catch(err => res.json(err));
+//         }
+//       })
+//       .catch(err => res.status(404).json(err));
+//   }
+// );
 
 //@route DELETE api/profile/education/:education_id
 // @description update or create the user's education fields
 // @acesss Private
 router.delete(
-  "/education/:education_id",
+  "/education/:edu_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      //Get the education index from db
-      const education_index = profile.education.findIndex(
-        item => item.id == req.params.education_id
-      );
-      //Get remove index
-      if (education_index > -1) {
-        profile.education.splice(education_index, 1);
-        profile
-          .save()
-          .then(profile => res.json(profile))
-          .catch(err => res.json(err));
-      } else {
-        return res.status(400).json({
-          education:
-            "Some error has occured! Please tried this later with the correct informations"
-        });
-      }
-    });
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get remove index
+        const removeIndex = profile.education
+          .map(item => item.id)
+          .indexOf(req.params.edu_id);
+
+        // Splice out of array
+        profile.education.splice(removeIndex, 1);
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
   }
 );
 
