@@ -211,8 +211,8 @@ router.delete(
   }
 );
 
-//@route DELETE api/profile/education/:education_id
-// @description update or create the user's education fields
+//@route DELETE api/profile/
+// @description delete profile and user
 // @acesss Private
 router.delete(
   "/",
@@ -226,7 +226,7 @@ router.delete(
   }
 );
 
-//@route  GET api/handle/handle
+//@route  GET api/profile/handle/:handle
 // @description get the current user profile by the handle
 // @acesss Public
 router.get("/handle/:handle", (req, res) => {
@@ -236,11 +236,11 @@ router.get("/handle/:handle", (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";
-        return res.status(400).json(errors);
+        return res.status(404).json(errors);
       }
       res.json(profile);
     })
-    .catch(err => res.status(400).json(err));
+    .catch(err => res.status(404).json(err));
 });
 
 //@route  GET api/user/user_id
