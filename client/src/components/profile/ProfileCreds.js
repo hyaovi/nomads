@@ -67,14 +67,22 @@ class ProfileCreds extends Component {
     ));
     return (
       <div>
-        <div class="row">
-          <div class="col-md-6">
-            <h3 class="text-center text-info">Experience</h3>
-            <ul class="list-group">{experienceItems}</ul>
+        <div className="row">
+          <div className="col-md-6">
+            <h3 className="text-center text-info">Experience</h3>
+            {experiences.length > 0 ? (
+              <ul className="list-group">{experienceItems}</ul>
+            ) : (
+              <p className="text-center">No ex Experience listed</p>
+            )}
           </div>
-          <div class="col-md-6">
-            <h3 class="text-center text-info">Education</h3>
-            <ul class="list-group">{educationItems}</ul>
+          <div className="col-md-6">
+            <h3 className="text-center text-info">Education</h3>
+            {educations.length > 0 ? (
+              <ul className="list-group">{educationItems}</ul>
+            ) : (
+              <p className="text-center">No Education listed</p>
+            )}
           </div>
         </div>
       </div>
