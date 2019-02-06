@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import ProfileHeader from "./ProfileHeader";
 import ProfileAbout from "./ProfileAbout";
 import ProfileCreds from "./ProfileCreds";
 import ProfileGithub from "./ProfileGithub";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import PropTypes from "prop-types";
 import { getProfileByHandle } from "../../actions/profileActions";
@@ -32,6 +32,12 @@ class Profile extends Component {
             <div className="col-md-6" />
           </div>
           <ProfileHeader profile={profile} />
+          <ProfileAbout profile={profile} />
+          <ProfileCreds
+            educations={profile.education}
+            experiences={profile.experience}
+          />
+          <ProfileGithub profile={profile} />
         </div>
       );
     }
