@@ -16,9 +16,11 @@ class Profiles extends Component {
       profilesItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
-        profilesItems = profiles.map(profile => (
-          <ProfileItems key={profile._id} profile={profile} />
-        ));
+        profilesItems = profiles.map(profile =>
+          profile.user ? (
+            <ProfileItems key={profile._id} profile={profile} />
+          ) : null
+        );
       } else {
         profilesItems = <h4>No profiles found...</h4>;
       }
