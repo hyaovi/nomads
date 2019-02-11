@@ -74,12 +74,9 @@ class CreateProfile extends Component {
 
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
-      console.log(`THIS IS THE PROFILE:`);
-      console.log(profile);
 
       //CONVERT SKILLS FROM ARRAY BAVK INTO CSV FORMAT
       const skillsCSV = profile.skills.join(",");
-      console.log(skillsCSV);
 
       //fill empty field from current fetched profile
       emptyFieldFiller(profile);
