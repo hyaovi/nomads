@@ -19,7 +19,7 @@ class CreateProfile extends Component {
       location: "",
       status: "",
       skills: "",
-      githubusername: "",
+      githubUsername: "",
       bio: "",
       twitter: "",
       facebook: "",
@@ -50,7 +50,7 @@ class CreateProfile extends Component {
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
-      githubusername: this.state.githubusername,
+      githubUsername: this.state.githubUsername,
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
@@ -76,7 +76,7 @@ class CreateProfile extends Component {
       website,
       location,
       skills,
-      githubusername,
+      githubUsername,
       bio,
       displaySocialInputs
     } = this.state;
@@ -219,10 +219,10 @@ class CreateProfile extends Component {
                 <TextFieldGroup
                   placeholder="Github Username"
                   type="text"
-                  name="githubusername"
-                  value={githubusername}
+                  name="githubUsername"
+                  value={githubUsername}
                   info="If you want your latest repos and a Github link, include your username"
-                  error={errors.githubusername}
+                  error={errors.githubUsername}
                   onChange={this.onChangeHandler}
                 />
                 <TextAreaFieldGroup
