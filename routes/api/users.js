@@ -28,10 +28,10 @@ router.post("/register", (req, res) => {
   const email = req.body.email;
   const name = req.body.name;
   const password = req.body.password;
-  const avatar = gravatar.url(req.body.avatar, {
+  const avatar = gravatar.url(req.body.email, {
     size: "200",
     rating: "pg",
-    default: "mm"
+    default: "identicon"
   });
   User.findOne({ email }).then(user => {
     if (user) {
