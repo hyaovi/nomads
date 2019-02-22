@@ -214,7 +214,7 @@ router.post(
 //@route  POST api/posts/comment/
 // @description Deletes commment from a post
 // @acesss Private
-router.post(
+router.delete(
   "/comment/:id/:comment_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
