@@ -32,7 +32,7 @@ function InputGroup({
     </div>
   );
 }
-InputGroup.proptypes = {
+InputGroup.propTypes = {
   name: Proptypes.string.isRequired,
   value: Proptypes.string.isRequired,
   type: Proptypes.string.isRequired,

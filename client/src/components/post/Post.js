@@ -4,6 +4,7 @@ import { getPost } from "../../actions/postActions";
 import PostItem from "../posts/PostItem";
 import { Link } from "react-router-dom";
 import Spinner from "../common/Spinner";
+import PropTypes from "prop-types";
 class Post extends Component {
   componentDidMount() {
     console.log(this.props.match.params.id);
@@ -26,7 +27,7 @@ class Post extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Link className="btn btn-light mb-3" to="/feed">
+              <Link className="btn btn-light mb-3" to="/feeds">
                 back to feeds
               </Link>
               {postContent}
@@ -37,6 +38,11 @@ class Post extends Component {
     );
   }
 }
+Post.propTypes = {
+  getPost: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
 const mapStateToProps = state => ({
   auth: state.auth,
   post: state.post

@@ -29,10 +29,10 @@ function TextAreaFieldGroup({
     </div>
   );
 }
-TextAreaFieldGroup.proptypes = {
+TextAreaFieldGroup.propTypes = {
   name: Proptypes.string.isRequired,
   value: Proptypes.string.isRequired,
-  type: Proptypes.string.isRequired,
+  type: Proptypes.string,
   onChange: Proptypes.func.isRequired,
   placeholder: Proptypes.string,
   info: Proptypes.string,
