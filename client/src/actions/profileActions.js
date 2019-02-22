@@ -31,6 +31,16 @@ export const getProfileByHandle = handle => dispatch => {
     });
 };
 
+// //get profile by userID
+// export const getProfileByUserID = userID => dispatch => {
+//   dispatch(setProfileLoading());
+//   axios
+//     .get(`/api/profile/user/${userID}`)
+//     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+//     .catch(err => {
+//       dispatch({ type: GET_PROFILE, payload: null });
+//     });
+// };
 //get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());

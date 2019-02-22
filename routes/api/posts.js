@@ -47,7 +47,7 @@ router.get("/:id", (req, res) => {
     );
 });
 
-//@route  GET api/posts/tests
+//@route  GET api/posts
 // @description tests posts routes
 // @acesss Private
 router.post(
