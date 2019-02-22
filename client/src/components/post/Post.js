@@ -5,9 +5,10 @@ import PostItem from "../posts/PostItem";
 import { Link } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import PropTypes from "prop-types";
+import CommentForm from "./CommentForm";
+import CommentFeed from "./CommentFeed";
 class Post extends Component {
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.props.getPost(this.props.match.params.id);
   }
   render() {
@@ -19,6 +20,8 @@ class Post extends Component {
       postContent = (
         <div>
           <PostItem post={post} showActions={false} />
+          <CommentFeed postID={post._id} comments={post.comments} />
+          <CommentForm postID={post._id} />
         </div>
       );
     }
