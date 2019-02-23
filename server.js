@@ -39,10 +39,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
   } else console.log("db connected!");
 });
 
-app.get("/", (req, res) => {
-  res.send("hello!");
-});
-
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
