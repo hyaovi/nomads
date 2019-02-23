@@ -4,6 +4,11 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 
+//settings routes
+const users = require("./routes/api/users");
+const posts = require("./routes/api/posts");
+const profile = require("./routes/api/profile");
+
 const app = express();
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,11 +32,6 @@ require("./config/passport")(passport);
 
 //connection to db with mongoose
 const dbURI = require("./config/keys").mongodbURI;
-
-//settings routes
-const users = require("./routes/api/users");
-const posts = require("./routes/api/posts");
-const profile = require("./routes/api/profile");
 
 mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
   if (err) {
