@@ -39,24 +39,23 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
   } else console.log("db connected!");
 });
 
-app.use(express.static(path.join(__dirname, "client", "build")));
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+app.get("/", (req, res) => {
+  res.send({ hi: "there" });
 });
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
-//for prod deployment
-if (process.env.NODE_ENV === "production") {
-  //set static folder
-  app.use(express.static(path.join(__dirname, "client", "build")));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+// //for prod deployment
+// if (process.env.NODE_ENV === "production") {
+//   //set static folder
+//   app.use(express.static(path.join(__dirname, "client", "build")));
+//   app.get("/*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`we are live on ${port}`));
+app.listen(port);
