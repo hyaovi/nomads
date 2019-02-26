@@ -12,10 +12,10 @@ import { SET_CURRENT_USER } from "../actions/types";
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get("api/profile")
+    .get("https://pure-river-53753.herokuapp.com/api/profile")
     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
-
     .catch(err => {
+      // console.log(err);
       dispatch({ type: GET_PROFILE, payload: {} });
     });
 };
@@ -24,7 +24,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`/api/profile/handle/${handle}`)
+    .get(`https://pure-river-53753.herokuapp.com/api/profile/handle/${handle}`)
     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
     .catch(err => {
       dispatch({ type: GET_PROFILE, payload: null });
@@ -45,7 +45,7 @@ export const getProfileByHandle = handle => dispatch => {
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get("/api/profile/all")
+    .get("https://pure-river-53753.herokuapp.com/api/profile/all")
     .then(res => dispatch({ type: GET_PROFILES, payload: res.data }))
     .catch(err => {
       dispatch({ type: GET_PROFILES, payload: null });
@@ -55,7 +55,7 @@ export const getProfiles = () => dispatch => {
 //Create profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
-    .post("api/profile/", profileData)
+    .post("https://pure-river-53753.herokuapp.com/api/profile/", profileData)
     .then(res => {
       // console.log(res.data);
       history.push("/dashboard");
@@ -79,7 +79,10 @@ export const clearCurrentProfile = () => {
 // add experience
 export const addExperience = (expData, history) => dispatch => {
   axios
-    .post("api/profile/experience", expData)
+    .post(
+      "https://pure-river-53753.herokuapp.com/api/profile/experience",
+      expData
+    )
     .then(res => history.push("/dashboard"))
     .catch(err => {
       console.log(err.response.data);
@@ -90,7 +93,10 @@ export const addExperience = (expData, history) => dispatch => {
 // add education
 export const addEducation = (eduData, history) => dispatch => {
   axios
-    .post("api/profile/education", eduData)
+    .post(
+      "https://pure-river-53753.herokuapp.com/api/profile/education",
+      eduData
+    )
     .then(res => history.push("/dashboard"))
     .catch(err => {
       console.log(err.response.data);
@@ -101,7 +107,9 @@ export const addEducation = (eduData, history) => dispatch => {
 //delete experience credential
 export const deleteExperience = id => dispatch => {
   axios
-    .delete(`api/profile/experience/:${id}`)
+    .delete(
+      `https://pure-river-53753.herokuapp.com/api/profile/experience/:${id}`
+    )
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -119,7 +127,9 @@ export const deleteExperience = id => dispatch => {
 //delete experience credential
 export const deleteEducation = id => dispatch => {
   axios
-    .delete(`api/profile/education/:${id}`)
+    .delete(
+      `https://pure-river-53753.herokuapp.com/api/profile/education/:${id}`
+    )
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -138,7 +148,7 @@ export const deleteEducation = id => dispatch => {
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can't be undone!")) {
     axios
-      .delete("api/profile")
+      .delete("https://pure-river-53753.herokuapp.com/api/profile")
       .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
       .catch(err =>
         dispatch({

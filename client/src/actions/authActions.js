@@ -6,7 +6,7 @@ import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 //register users action
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("api/users/register", userData)
+    .post("https://pure-river-53753.herokuapp.com/api/users/register", userData)
     .then(res => history.push("/login"))
     .catch(err => {
       dispatch({
@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => dispatch => {
 //GET THE USER A TOKEN
 export const loginUser = userData => dispatch => {
   axios
-    .post("api/users/login", userData)
+    .post("https://pure-river-53753.herokuapp.com/api/users/login", userData)
     .then(res => {
       const { token } = res.data;
       //SAVE TO LOCALSTORAGE

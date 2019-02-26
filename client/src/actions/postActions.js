@@ -13,7 +13,7 @@ import {
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
   axios
-    .post("api/posts", postData)
+    .post("https://pure-river-53753.herokuapp.com/api/posts", postData)
     .then(res =>
       dispatch({
         type: ADD_POST,
@@ -27,20 +27,20 @@ export const addPost = postData => dispatch => {
 export const getPosts = () => dispatch => {
   dispatch(setPostsLoading());
   axios
-    .get("api/posts")
+    .get("https://pure-river-53753.herokuapp.com/api/posts")
     .then(res =>
       dispatch({
         type: GET_POSTS,
         payload: res.data
       })
     )
-    .catch(err => dispatch({ type: GET_POSTS, payload: {} }));
+    .catch(err => dispatch({ type: GET_POSTS, payload: [] }));
 };
 // get post
 export const getPost = id => dispatch => {
   dispatch(setPostsLoading());
   axios
-    .get(`/api/posts/${id}`)
+    .get(`https://pure-river-53753.herokuapp.com/api/posts/${id}`)
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -53,7 +53,7 @@ export const getPost = id => dispatch => {
 // Delete post
 export const deletePost = id => dispatch => {
   axios
-    .delete(`/api/posts/${id}`)
+    .delete(`https://pure-river-53753.herokuapp.com/api/posts/${id}`)
     .then(res => {
       dispatch({ type: DELETE_POST, payload: id }); // cant recall getPosts actions and reload the whole page
     })
@@ -63,14 +63,14 @@ export const deletePost = id => dispatch => {
 // Add like
 export const addLike = id => dispatch => {
   axios
-    .post(`/api/posts/like/${id}`)
+    .post(`https://pure-river-53753.herokuapp.com/api/posts/like/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 // Add like
 export const removeLike = id => dispatch => {
   axios
-    .post(`/api/posts/unlike/${id}`)
+    .post(`https://pure-river-53753.herokuapp.com/api/posts/unlike/${id}`)
     .then(res => dispatch(getPosts()))
     .catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
@@ -79,7 +79,10 @@ export const removeLike = id => dispatch => {
 export const addComment = (postID, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`/api/posts/comment/${postID}`, commentData)
+    .post(
+      `https://pure-river-53753.herokuapp.com/api/posts/comment/${postID}`,
+      commentData
+    )
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -92,7 +95,9 @@ export const addComment = (postID, commentData) => dispatch => {
 //delete comment
 export const deleteComment = (postID, commentID) => dispatch => {
   axios
-    .delete(`/api/posts/comment/${postID}/${commentID}`)
+    .delete(
+      `https://pure-river-53753.herokuapp.com/api/posts/comment/${postID}/${commentID}`
+    )
     .then(res =>
       dispatch({
         type: GET_POST,
