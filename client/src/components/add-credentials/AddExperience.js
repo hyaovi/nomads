@@ -152,11 +152,11 @@ class AddExperience extends Component {
     );
   }
 }
-AddExperience.proptypes = {
-  addExperience: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
-};
+// AddExperience.proptypes = {
+//   addExperience: PropTypes.func.isRequired,
+//   errors: PropTypes.object.isRequired,
+//   profile: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = state => ({
   errors: state.errors,
