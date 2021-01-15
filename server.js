@@ -58,6 +58,6 @@ app.use("/api/posts", posts);
 //   });
 // }
 
-const port = process.env.PORT || 5000;
+const port = process.env.API_PORT || 5000;
 
 app.listen(port);

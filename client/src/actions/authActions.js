@@ -2,11 +2,12 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import { BASE_URL } from '../config';
 
 //register users action
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("https://pure-river-53753.herokuapp.com/api/users/register", userData)
+    .post(`${BASE_URL}users/register`, userData)
     .then(res => history.push("/login"))
     .catch(err => {
       dispatch({
@@ -19,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
 //GET THE USER A TOKEN
 export const loginUser = userData => dispatch => {
   axios
-    .post("https://pure-river-53753.herokuapp.com/api/users/login", userData)
+    .post(`${BASE_URL}users/login`, userData)
     .then(res => {
       const { token } = res.data;
       //SAVE TO LOCALSTORAGE

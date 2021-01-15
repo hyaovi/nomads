@@ -7,12 +7,13 @@ import {
   GET_PROFILES
 } from "./types";
 import { SET_CURRENT_USER } from "../actions/types";
+import { BASE_URL } from '../config';
 
 //get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get("https://pure-river-53753.herokuapp.com/api/profile")
+    .get(`${BASE_URL}profile`)
     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
     .catch(err => {
       // console.log(err);
@@ -24,7 +25,7 @@ export const getCurrentProfile = () => dispatch => {
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get(`https://pure-river-53753.herokuapp.com/api/profile/handle/${handle}`)
+    .get(`${BASE_URL}profile/handle/${handle}`)
     .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
     .catch(err => {
       dispatch({ type: GET_PROFILE, payload: null });
@@ -45,7 +46,7 @@ export const getProfileByHandle = handle => dispatch => {
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get("https://pure-river-53753.herokuapp.com/api/profile/all")
+    .get(`${BASE_URL}profile/all`)
     .then(res => dispatch({ type: GET_PROFILES, payload: res.data }))
     .catch(err => {
       dispatch({ type: GET_PROFILES, payload: null });
@@ -55,7 +56,7 @@ export const getProfiles = () => dispatch => {
 //Create profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
-    .post("https://pure-river-53753.herokuapp.com/api/profile/", profileData)
+    .post(`${BASE_URL}profile/`, profileData)
     .then(res => {
       // console.log(res.data);
       history.push("/dashboard");
@@ -80,7 +81,7 @@ export const clearCurrentProfile = () => {
 export const addExperience = (expData, history) => dispatch => {
   axios
     .post(
-      "https://pure-river-53753.herokuapp.com/api/profile/experience",
+      `${BASE_URL}profile/experience`,
       expData
     )
     .then(res => history.push("/dashboard"))
@@ -94,7 +95,7 @@ export const addExperience = (expData, history) => dispatch => {
 export const addEducation = (eduData, history) => dispatch => {
   axios
     .post(
-      "https://pure-river-53753.herokuapp.com/api/profile/education",
+      `${BASE_URL}profile/education`,
       eduData
     )
     .then(res => history.push("/dashboard"))
@@ -108,7 +109,7 @@ export const addEducation = (eduData, history) => dispatch => {
 export const deleteExperience = id => dispatch => {
   axios
     .delete(
-      `https://pure-river-53753.herokuapp.com/api/profile/experience/:${id}`
+      `${BASE_URL}profile/experience/:${id}`
     )
     .then(res =>
       dispatch({
@@ -128,7 +129,7 @@ export const deleteExperience = id => dispatch => {
 export const deleteEducation = id => dispatch => {
   axios
     .delete(
-      `https://pure-river-53753.herokuapp.com/api/profile/education/:${id}`
+      `${BASE_URL}profile/education/:${id}`
     )
     .then(res =>
       dispatch({
@@ -138,7 +139,7 @@ export const deleteEducation = id => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_ERRORS,
+        type: GET_ERRORS, 
         payload: err.response.data
       })
     );
@@ -148,7 +149,7 @@ export const deleteEducation = id => dispatch => {
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can't be undone!")) {
     axios
-      .delete("https://pure-river-53753.herokuapp.com/api/profile")
+      .delete("${BASE_URL}profile")
       .then(res => dispatch({ type: SET_CURRENT_USER, payload: {} }))
       .catch(err =>
         dispatch({
