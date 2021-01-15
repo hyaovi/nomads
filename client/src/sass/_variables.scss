@@ -1,0 +1,67 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: "Nunito", sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+// Colors
+// $blue: #2D8EFF;
+// $indigo: #6574cd;
+// $purple: #9561e2;
+// $pink: #f66d9b;
+// $red: #e3342f;
+// $orange: #f6993f;
+// $yellow: #ffed4a;
+// $green: #38c172;
+// $teal: #4dc0b5;
+// $cyan: #6cb2eb;
+// $blue-2: #3d72ff;
+// $primary: #3581ff;
+// $black:#000000;
+// $white:#ffffff;
+// $grey:#7E7E7E;
+// $btn-blue:#0078FF;
+// $btn-cyan:#0DC1C4;
+// $btn-green:#5AC239;
+
+//Gradient
+
+$primary-gradient: linear-gradient(90deg, #3D72FF 0%, #14BEFF 100%);
+$subscription-gradient: linear-gradient(150.89deg, #20DEB2 -23.13%, #0BB3E4 117.73%);
+$editor-gradient: linear-gradient(90deg, #22E3AC 0%, #09AFE8 100%);
+
+// border-radius variables
+$border-radius: 0.5rem;
+$border-radius-lg: 0.7rem;
+$border-radius-sm: 0.3rem;
+
+// MIXINS
+@mixin gradient-background {
+    background-color: $blue-2 !important;
+    background: linear-gradient(to right, $blue-2, #14beff) !important;
+}
+
+//BUTTONS AND INPUT FONT SIZE
+$btn-font-size: 1rem;
+$input-btn-font-size: 1rem;
+
+$btn-padding-y-lg: 0.825rem;
+$input-btn-padding-y-lg: 0.825rem;
+$btn-padding-x-lg: 1.25rem;
+$input-btn-padding-x-lg: 1.25rem;
+
+$btn-padding-y: 0.7rem;
+$input-btn-padding-y: 0.7rem;
+$btn-padding-x: 1rem;
+$input-btn-padding-x: 1rem;
+// $input-btn-line-height: 1.33;
+// $btn-line-height: 1.33;
+
+$btn-padding-y-sm: 0.45rem;
+$input-btn-padding-y-sm: 0.45rem;
+$btn-padding-x-sm: 0.75rem;
+$input-btn-padding-x-sm: 0.75rem;
+
+$enable-responsive-font-sizes: true;
