@@ -38,7 +38,7 @@ class Login extends Component {
       this.props.history.push("/dashboard");
     }
   }
-  componentWillReceiveProps(nextprops) {
+  UNSAFE_componentWillReceiveProps(nextprops) {
     //push or redirect to dashboard when logged in
     if (nextprops.auth.isAuthenticated) {
       this.props.history.push("/dashboard");

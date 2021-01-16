@@ -53,7 +53,7 @@ class AddExperience extends Component {
     };
     this.props.addExperience(expData, this.props.history);
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
