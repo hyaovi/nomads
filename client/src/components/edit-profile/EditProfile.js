@@ -66,7 +66,7 @@ class CreateProfile extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     //binding errors from props to component state
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
